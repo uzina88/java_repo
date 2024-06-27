@@ -19,6 +19,15 @@ public class Book {
 	private int page;
 	
 	
+    // 생성자
+	public Book () {}
+	
+	// 생성자
+	public Book(String arg1, String arg2) {
+		this.title = arg1;
+		this.author = arg2;
+	}
+	
 	public String bookInfo() {
 		String result = "";
 		
