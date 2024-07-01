@@ -13,6 +13,13 @@ public class Car {
 		
 	}
 	
+	public Car(String model, int wheel, int seat, String fuel) {
+		this.model = model;
+		this.wheel = wheel;
+		this.seat = seat;
+		this.fuel = fuel;
+	}
+	
 	public String carInfo() {
 		String result ="";
 		
