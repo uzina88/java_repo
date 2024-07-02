@@ -35,9 +35,11 @@ public class MemberService {
 				break;
 			case 2 :
 				displayMsg("2. 회원 정보 수정");
+				updateMember();
 				break;
 			case 3 : 
 				displayMsg("3. 회원 정보 삭제");
+				deleteMember();
 				break;
 			case 4 : 
 				displayMsg("4. 회원 정보 출력(이름)");
@@ -78,14 +80,15 @@ public class MemberService {
 		return choice;
 	}
 	
+	
 	// 1. 회원정보 생성
 	public void insertMember() {
 		
-//	private String memberId;	// 회원 아이디
-//	private String memberPw;	// 회원 비밀번호
-//	private String memberName;	// 회원 이름
-//	private String email;		// 이메일
-//	private String phone;		// 연락처
+	//	private String memberId;	// 회원 아이디
+	//	private String memberPw;	// 회원 비밀번호
+	//	private String memberName;	// 회원 이름
+	//	private String email;		// 이메일
+	//	private String phone;		// 연락처
 
 		// 회원 정보를 등록할 member 객체 생성
 		Member member = new Member();
@@ -117,13 +120,86 @@ public class MemberService {
 		
 	}
 	
+
+	// 2. 회워정보 수정
+	public void updateMember() {
+		
+		List<Member> members = mDAO.findMember();
+		
+		System.out.print("삭제할 회원 아이디를 입력해 주세요");
+		String findId = sc.next();
+		
+		boolean flag = false;
+		
+		for(int i=0; i<members.size(); i++) {
+			Member member = members.get(i);
+			if(findId.equals(member.getMemberId())) {
+				System.out.print(member.getMemberName() + "님의 정볼르 수정해 주세요.");
+				
+				System.out.print("비밀번호 : ");
+				member.setMemberPw(sc.next());
+				
+				System.out.print("이메일 : ");
+				member.setEmail(sc.next());
+				
+				System.out.print("연락처 : ");
+				member.setPhone(sc.next());
+				
+				// 일치했을 떄 true for문 멈추기
+				flag = true;
+				break;	
+			}
+		}
+		
+		// 일치하지 않을 경우
+		if(flag == false) {
+			displayMsg("회원 아이디가 좋재하지 않습니다.");
+		}
+		
+	}
 	
-	// 4. (단일) 회원 정보 메소드 생성
+	
+	
+	// 3. 회원 정보 삭제
+	public void deleteMember() {
+		
+		List<Member> members = mDAO.findMember();
+		
+		System.out.print("수정하고 싶은 아이디를 입력해 주세요");
+		String findId = sc.next();
+		
+		boolean flag = false;
+		
+		for(int i=0; i<members.size(); i++) {
+			Member member = members.get(i);
+			
+			if(findId.equals(member.getMemberId())) {
+				mDAO.deleteMember(member);
+				displayMsg("삭제 완료!!");
+				
+				// 일치했을 떄 true for문 멈추기
+				flag = true;
+				break;	
+			}
+		}
+		
+		// 일치하지 않을 경우
+		if(flag == false) {
+			displayMsg("회원 아이디가 좋재하지 않습니다.");
+		}
+		
+	}
+	
+	
+	
+	
+	
+	// 4. (단일) 회원 정보 메소드 생성(이름)
 	public void printMember() {
 		
 		List<Member> members = mDAO.findMember();
 		
-		System.out.println("조회할 회원 아이디를 입력해 주세요");
+		System.out.print("조회할 회원 아이디를 입력해 주세요");
 		String findId = sc.next();
 		
 		boolean flag = false;
