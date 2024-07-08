@@ -126,7 +126,7 @@ public class MemberService {
 		
 		List<Member> members = mDAO.findMember();
 		
-		System.out.print("삭제할 회원 아이디를 입력해 주세요");
+		System.out.print("수정할 회원 아이디를 입력해 주세요");
 		String findId = sc.next();
 		
 		boolean flag = false;
@@ -165,7 +165,7 @@ public class MemberService {
 		
 		List<Member> members = mDAO.findMember();
 		
-		System.out.print("수정하고 싶은 아이디를 입력해 주세요");
+		System.out.print("삭제하고 싶은 아이디를 입력해 주세요");
 		String findId = sc.next();
 		
 		boolean flag = false;
